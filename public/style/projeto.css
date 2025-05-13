@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Karantina:wght@300;400;700&family=Tiny5&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    /* background-color: #252525; */
+    box-sizing: border-box;
+    font-family: 'Karantina';
+}
+
+html{
+    height: 500vh;
+}
+
+.container {
+    max-width: 100%;
+    height: 50px;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+
+ul {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-left: 350px;
+    margin-right: 350px;
+}
+
+.navbar a{
+    font-size: 30px;
+    justify-content: center;
+}
+
+.navbar a:hover{
+    font-size: 40px;
+}
+
+header{
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+header i {
+    font-size: 30px;
+    color: rgb(228, 228, 228);
+}
+
+header ul {
+    list-style-type: none;
+}
+
+header ul li{
+    display: inline-block;
+    margin-top: 7px;
+}
+
+header ul li a{
+    color: white;
+    text-decoration: none;
+}
+
+.banner{
+    height: 100vh;
+    background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.5)),
+    url(/public/imagens/sobre.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.banner span{
+    color: #D21216;
+    margin-left: 160px;
+    font-size: 200px;
+}
