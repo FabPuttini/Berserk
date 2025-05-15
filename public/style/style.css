@@ -33,7 +33,7 @@ ul {
 }
 
 .navbar a:hover{
-    font-size: 40px;
+    color: #D21216;
 }
 
 header{
@@ -54,7 +54,7 @@ header ul {
 
 header ul li{
     display: inline-block;
-    margin-top: 7px;
+    margin-top: 8px;
 }
 
 header ul li a{
