@@ -65,7 +65,7 @@ header ul li a{
 .content-1{
     height: 100vh;
     background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.5)),
-    url(/public/imagens/index/bg1.jpg);
+    url(../imagens/index/bg1.jpg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -272,7 +272,7 @@ header ul li a{
     flex-direction: column;
     height: 100%;
     background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.5)),
-    url(/public/imagens/index/bg2.jpg);
+    url(../imagens/index/bg2.jpg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -365,7 +365,7 @@ header ul li a{
     flex-direction: column;
     height: 100%;
     background-image: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.8)),
-    url(/public/imagens/index/bg3.jpg);
+    url(../imagens/index/bg3.jpg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;

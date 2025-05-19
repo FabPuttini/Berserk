@@ -70,7 +70,7 @@ header ul li a{
     align-items: center;
     height: 100vh;
     background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.5)),
-    url(/public/imagens/login.jpg);
+    url(../imagens/login.jpg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
