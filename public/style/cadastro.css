@@ -103,21 +103,21 @@ header ul li a{
     font-size: 150px;
 }
 
-.campo-1 {
+.campo {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
 }
 
-.campo-1 span {
+.campo span {
     font-size: 32px;
     color: rgb(228, 228, 228);
     padding-right: 50%;
     padding-bottom: 10px;
 }
 
-.campo-1 input {
+.campo input {
     height: 50px;
     width: 450px;
     font-size: 32px;
@@ -126,72 +126,28 @@ header ul li a{
 
 .campo-2 {
     display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-}
-
-.campo-2 span {
-    font-size: 32px;
-    color: rgb(228, 228, 228);
-    padding-top: 30px;
-    padding-right: 67%;
-    padding-bottom: 10px;
-}
-
-.campo-2 input {
-    height: 50px;
-    width: 450px;
-    font-size: 32px;
-    padding-left: 10px;
-}
-
-.campo-3 {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-}
-
-.campo-3 span {
-    font-size: 32px;
-    color: rgb(228, 228, 228);
-    padding-top: 30px;
-    padding-right: 67%;
-    padding-bottom: 10px;
-}
-
-.campo-3 input {
-    height: 50px;
-    width: 450px;
-    font-size: 32px;
-    padding-left: 10px;
-}
-
-.campo-4 {
-    display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     padding-top: 20px;
 }
 
-.campo-4 span {
+.campo-2 span {
     font-size: 28px;
     color: rgb(228, 228, 228);
 }
 
-.campo-4 a {
+.campo-2 a {
     padding-left: 10px;
     font-size: 28px;
     color: rgb(228, 228, 228);
 }
 
-.campo-4 a:hover {
+.campo-2 a:hover {
     color: #D21216;
 }
 
-.campo-5 {
+.campo-3 {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -199,7 +155,7 @@ header ul li a{
     padding-bottom: 25px;
 }
 
-.campo-5 button {
+.campo-3 button {
     height: 50px;
     width: 300px;
     font-size: 40px;
