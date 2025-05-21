@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="wclassth=device-wclassth, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="/public/imagens/icon/marca icon.png">
     <link rel="stylesheet" href="style/cadastro.css">
     <title>Berserk</title>
@@ -69,10 +69,6 @@
         emailVar == "" ||
         senhaVar == "" 
       ) {
-        cardErro.style.display = "block";
-        mensagem_erro.innerHTML =
-          "(Mensagem de erro para todos os campos em branco)";
-  
         finalizarAguardar();
         return false;
       } 
@@ -94,11 +90,6 @@
           console.log("resposta: ", resposta);
   
           if (resposta.ok) {
-            cardErro.style.display = "block";
-  
-            mensagem_erro.innerHTML =
-              "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
-  
             setTimeout(() => {
               window.location = "login.html";
             }, "2000");
@@ -109,16 +100,6 @@
             throw "Houve um erro ao tentar realizar o cadastro!";
           }
         })
-        /*
-        .catch(function (resposta) {
-          console.log(`#ERRO: ${resposta}`);
-          finalizarAguardar();
-        });
-  
-      return false;
-    } function sumirMensagem() {
-      cardErro.style.display = "none";
-      */
     }
     
   </script>
