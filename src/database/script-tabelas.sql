@@ -19,17 +19,12 @@ CREATE TABLE usuario (
 );
 
 CREATE TABLE quiz (
+	id_quiz INT PRIMARY KEY
+);
+
+CREATE TABLE usuario_quiz (
 	id_usuario INT,
-	pergunta_1 INT,
-	pergunta_2 INT,
-	pergunta_3 INT,
-	pergunta_4 INT,
-	pergunta_5 INT,
-	pergunta_6 INT,
-	pergunta_7 INT,
-	pergunta_8 INT,
-	pergunta_9 INT,
-	pergunta_10 INT,
-	PRIMARY KEY (id_usuario),
-	FOREIGN KEY (id_usuario) REFERENCES usuario(id)
+	id_quiz INT,
+	FOREIGN KEY (id_usuario) REFERENCES usuario(id),
+	FOREIGN KEY (id_quiz) REFERENCES usuario(id_quiz)
 );
