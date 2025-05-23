@@ -23,8 +23,8 @@ ul {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    margin-left: 350px;
-    margin-right: 350px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .navbar a{
@@ -162,4 +162,9 @@ header ul li a{
     color: #D21216;
     background-color: #0F0F0F;
     cursor: pointer;
+    border: none;
+}
+
+.campo-3 button:hover{
+    background-color: #181818;
 }
