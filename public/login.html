@@ -9,15 +9,19 @@
     <script src="./js/sessao.js"></script>
 </head>
 <body>
-    <header class="header">
+    <header id="header">
         <div class="container">
             <div class="navbar">
                 <nav>
                     <ul>
                         <li><a href="index.html">O Mangá</a></li>
                         <li><a href="projeto.html">O Projeto</a></li>
-                        <li><a href="login.html" style="font-weight: 550;">Login</a></li>
-                        <li><a href="cadastro.html">Cadastre-se</a></li>
+                        <li>
+                            <button onclick="exibirSessao()"><img src="./imagens/icon.png"></button>
+                            <div id="sessao">
+
+                            </div>
+                        </li>
                     </ul>
                 </nav>
             </div>
@@ -49,7 +53,23 @@
 </body>
 </html>
 <script>
-
+    let boolean = false;
+    function exibirSessao() {
+        if (boolean == false){
+            sessao.innerHTML = `
+            <div class="block">
+                <ul>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="cadastro.html">Cadastre-se</a></li>
+                </ul>
+            </div>`
+            boolean = true;
+        }
+        else{
+            sessao.innerHTML = ``
+            boolean = false;
+        }
+    }
 
     function entrar() {
         aguardar();

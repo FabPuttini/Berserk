@@ -9,23 +9,23 @@
 </head>
 <body>
     <header id="header">
-
         <div class="container">
-
             <div class="navbar">
-
                 <nav>
                     <ul>
-                        <li><a href="index.html" style="font-weight: 550;">O Mangá</a></li>
+                        <li><a href="index.html">O Mangá</a></li>
                         <li><a href="projeto.html">O Projeto</a></li>
-                        <li><a href="login.html">Login</a></li>
-                        <li><a href="cadastro.html">Cadastre-se</a></li>
+                        <li>
+                            <button onclick="exibirSessao()"><img src="./imagens/icon.png"></button>
+                            <div id="sessao">
+
+                            </div>
+                        </li>
                     </ul>
                 </nav>
-
             </div>
-            
         </div>
+    </header>
     </header>
 
     <div class="content-1">
@@ -140,3 +140,22 @@
     </div>
 </body>
 </html>
+<script>
+    let boolean = false;
+    function exibirSessao() {
+        if (boolean == false){
+            sessao.innerHTML = `
+            <div class="block">
+                <ul>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="cadastro.html">Cadastre-se</a></li>
+                </ul>
+            </div>`
+            boolean = true;
+        }
+        else{
+            sessao.innerHTML = ``
+            boolean = false;
+        }
+    }
+</script>

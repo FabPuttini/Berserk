@@ -15,16 +15,20 @@
             <div class="navbar">
                 <nav>
                     <ul>
-                        <li><a href="index.html" style="font-weight: 550;">O Mangá</a></li>
+                        <li><a href="index.html">O Mangá</a></li>
                         <li><a href="projeto.html">O Projeto</a></li>
-                        <li><a href="login.html">Login</a></li>
-                        <li><a href="cadastro.html">Cadastre-se</a></li>
+                        <li>
+                            <button onclick="exibirSessao()"><img src="./imagens/icon.png"></button>
+                            <div id="sessao">
+
+                            </div>
+                        </li>
                     </ul>
                 </nav>
             </div>
         </div>
     </header>
-    
+
     <div id="pontuacaoEJogo">
         <div class="botao_iniciar">
             <button id="btnIniciarQuiz" onclick="iniciarQuiz()">INICIAR QUIZ</button>
@@ -34,6 +38,24 @@
 
 </html>
 <script>
+    let boolean = false;
+    function exibirSessao() {
+        if (boolean == false){
+            sessao.innerHTML = `
+            <div class="block">
+                <ul>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="cadastro.html">Cadastre-se</a></li>
+                </ul>
+            </div>`
+            boolean = true;
+        }
+        else{
+            sessao.innerHTML = ``
+            boolean = false;
+        }
+    }
+
     const listaDeQuestoes = [
 
         {
@@ -98,7 +120,7 @@
             alternativaD: "Puck",
             alternativaCorreta: "alternativaD"
         },
-        
+
         {
             pergunta: "Qual é o principal objetivo de Guts após o Eclipse?",
             alternativaA: "Matar Griffith",
@@ -139,19 +161,20 @@
 
 
     function iniciarQuiz() {
-       
+
         pontuacaoEJogo.innerHTML = `
         <div id="pontuacao" class="flex-colunar width-fit-content-1 border-primary">
             <div id="pontuacaoDuranteJogo" class="flex-colunar padding-8">
-                <span class="acertos">Quantidade de acertos: <br><span id="spanCertas"></span></span>
+                <span class="acertos">Quantidade de acertos: <br><span id="spanCertas">***</span></span>
                 <hr>
-                <span class="erros">Quantidade de erros: <br><span id="spanErradas"></span></span>
+                <span class="erros">Quantidade de erros: <br><span id="spanErradas">***</span></span>
                 <hr>
             </div>
             <div id="pontuacaoFinalJogo" class="flex-colunar padding-8">
                 <span id="pontuacaoFinal" class="width-fit-content">Pontuação Final:
-                    <span id="spanPontuacaoFinal">***</span>
+                    <br><span id="spanPontuacaoFinal">***</span>
                 </span>
+                <hr>
                 <span id="msgFinal" class="width-fit-content">***</span>
             </div>
         </div>
@@ -347,14 +370,14 @@
             classComCoresParaMensagemFinal = "text-success-with-bg"
         }
 
-        textoParaMensagemFinal += "<br> Você acertou " + Math.round((porcentagemFinalDeAcertos)*100) + "% das questões."
+        textoParaMensagemFinal += "<br> Você acertou " + Math.round((porcentagemFinalDeAcertos) * 100) + "% das questões."
 
 
         document.getElementById('msgFinal').innerHTML = textoParaMensagemFinal
-        document.getElementById('msgFinal').classList.add(classComCoresParaMensagemFinal) 
+        document.getElementById('msgFinal').classList.add(classComCoresParaMensagemFinal)
         document.getElementById('spanPontuacaoFinal').innerHTML = pontuacaoFinal
 
-        document.getElementById('jogo').classList.add("text-new-gray") 
+        document.getElementById('jogo').classList.add("text-new-gray")
 
         btnProx.disabled = true
         btnSubmeter.disabled = true
