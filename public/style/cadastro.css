@@ -36,7 +36,6 @@ ul {
     color: #D21216;
 }
 
-
 .navbar button{
     height: 44px;
     width: 44px;
@@ -53,6 +52,8 @@ ul {
     height: 45px;
     width: 45px;
 }
+
+
 
 .block {
     display: flex;
@@ -203,4 +204,15 @@ header ul li a{
 
 .campo-3 button:hover{
     background-color: #181818;
+}
+
+
+
+
+
+
+.botaoDesconectar {
+    border-radius: 0 !important;
+    height: 30px !important;
+    width: 90px !important;
 }

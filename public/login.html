@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
     <title>Berserk</title>
     <script src="./js/sessao.js"></script>
 </head>
+
 <body>
     <header id="header">
         <div class="container">
@@ -36,61 +38,43 @@
             </div>
             <div class="campo">
                 <span>Email:</span>
-                <input type="text" class="nome_de_usuario">
+                <input type="text" id="email_input">
             </div>
             <div class="campo">
                 <span>Senha:</span>
-                <input type="password" class="senha" placeholder="******">
+                <input type="password" id="senha_input" placeholder="******">
             </div>
             <div class="campo-2">
                 <span>Ainda não tem uma conta?</span> <a href="cadastro.html">Crie Uma</a>
-            </div>  
+            </div>
             <div class="campo-3">
                 <button onclick="entrar()">LOGIN</button>
             </div>
         </div>
     </div>
 </body>
-</html>
-<script>
-    let boolean = false;
-    function exibirSessao() {
-        if (boolean == false){
-            sessao.innerHTML = `
-            <div class="block">
-                <ul>
-                    <li><a href="login.html">Login</a></li>
-                    <li><a href="cadastro.html">Cadastre-se</a></li>
-                </ul>
-            </div>`
-            boolean = true;
-        }
-        else{
-            sessao.innerHTML = ``
-            boolean = false;
-        }
-    }
 
+</html>
+<script src="./js/sessionStorage.js"></script>
+<script>
     function entrar() {
-        aguardar();
+        console.log("Função entrar chamada!");
 
         var emailVar = email_input.value;
         var senhaVar = senha_input.value;
 
         if (emailVar == "" || senhaVar == "") {
-            cardErro.style.display = "block"
-            mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
             finalizarAguardar();
             return false;
-        }
-        else {
-            setInterval(sumirMensagem, 5000)
         }
 
         console.log("FORM LOGIN: ", emailVar);
         console.log("FORM SENHA: ", senhaVar);
 
+        console.log("Fazendo a requisição fetch()...")
+
         fetch("/usuarios/autenticar", {
+                        
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -101,21 +85,20 @@
             })
         }).then(function (resposta) {
             console.log("ESTOU NO THEN DO entrar()!")
+            console.log("Status da resposta:", resposta.status);
 
             if (resposta.ok) {
                 console.log(resposta);
+                console.log("Eu fiz o login");
 
+                console.log("Resposta do servidor:", resposta);
                 resposta.json().then(json => {
-                    console.log(json);
-                    console.log(JSON.stringify(json));
+                    console.log("JSON Recebido:", json);
                     sessionStorage.EMAIL_USUARIO = json.email;
                     sessionStorage.NOME_USUARIO = json.nome;
                     sessionStorage.ID_USUARIO = json.id;
-
-                    setTimeout(function () {
-                        window.location = "./dashboard/cards.html";
-                    }, 1000); // apenas para exibir o loading
-
+                    sessionStorage.CONECTADO = "conectado";
+                    window.location = "/index.html";
                 });
 
             } else {

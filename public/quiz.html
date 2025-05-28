@@ -37,25 +37,8 @@
 </body>
 
 </html>
+<script src="./js/sessionStorage.js"></script>
 <script>
-    let boolean = false;
-    function exibirSessao() {
-        if (boolean == false){
-            sessao.innerHTML = `
-            <div class="block">
-                <ul>
-                    <li><a href="login.html">Login</a></li>
-                    <li><a href="cadastro.html">Cadastre-se</a></li>
-                </ul>
-            </div>`
-            boolean = true;
-        }
-        else{
-            sessao.innerHTML = ``
-            boolean = false;
-        }
-    }
-
     const listaDeQuestoes = [
 
         {
