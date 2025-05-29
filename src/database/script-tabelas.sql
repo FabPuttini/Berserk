@@ -26,5 +26,5 @@ CREATE TABLE usuario_quiz (
 	id_usuario INT,
 	id_quiz INT,
 	FOREIGN KEY (id_usuario) REFERENCES usuario(id),
-	FOREIGN KEY (id_quiz) REFERENCES usuario(id_quiz)
+	FOREIGN KEY (id_quiz) REFERENCES quiz(id_quiz)
 );
