@@ -8,9 +8,9 @@
                 sessao.innerHTML = `
             <div class="block">
                 <ul>
-                    <li><a href="dashboard.html">Dashboard</a></li>
-                    <li><a href="questionario.html">Questionario</a></li>
-                    <li><a href="quiz.html">Quiz</a></li>
+                    <li><a href="dashboard.html">DASHBOARD</a></li>
+                    <li><a href="questionario.html">QUESTIONÁRIO</a></li>
+                    <li><a href="quiz.html">QUIZ</a></li>
                     <li><a onclick="sair()" style="cursor: pointer;">Logout</a></li>
                 </ul>
             </div>`
