@@ -1,9 +1,9 @@
 var database = require("../database/config")
 
-function cadastrarRespostas(id_usuario, id_quiz, resultado) {
+function cadastrarRespostas(id_quiz, id_usuario, resultado) {
     var instrucao = `
-        UPDATE quiz SET id_ = ;
-        INSERT INTO usuario_quiz (id_usuario, id_quiz, resultado) VALUES ('${id_usuario}', '${id_quiz}', '${resultado}');
+        INSERT INTO quiz (id_quiz, id_usuario, resultado) VALUES ('${id_quiz}', '${id_usuario}', '${resultado}');
+        INSERT INTO questionario_quiz (id_quiz) VALUES ('${id_quiz}');
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);

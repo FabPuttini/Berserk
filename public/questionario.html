@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Berserk</title>
+    <link rel="stylesheet" href="./style/questionario.css">
+    <link rel="icon" href="./imagens/icon/marca icon.png">
+    <script src="./js/sessionStorage.js"></script>
+</head>
+<body>
+    <header id="header">
+        <div class="container">
+            <div class="navbar">
+                <nav>
+                    <ul>
+                        <li><a href="index.html">O Mangá</a></li>
+                        <li><a href="projeto.html">O Projeto</a></li>
+                        <li>
+                            <button onclick="exibirSessao()"><img src="./imagens/icon.png"></button>
+                            <div id="sessao">
+
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <div class="titulo-principal">
+        <h1>Questionário <span>Berserk</span></h1>
+    </div>
+  
+    <div class="content">
+        <div class="arcos">
+            <div class="titulo">
+                <h2>Qual seu <gold style="color: darkgoldenrod;">Arco</gold> favorito de <span>Berserk</span>?</h2>
+            </div>
+            <div id="imgArcos">
+                <img class="imagem" style="display: none;" />
+            </div>
+            <div class="select">
+                <select id="arcos">
+                    <option value="#">SELECIONE</option>
+                    <option value="espadachim_negro">Espadachim Negro</option>
+                    <option value="golden_age">Era de Ouro</option>
+                    <option value="conviccao">Arco da Convicção</option>
+                    <option value="falcao">Falcão Milenar</option>
+                    <option value="fantasia">Arco Fantasia</option>
+                    <option value="barco">Arco do Barco</option>
+                    <option value="criancas">Arco Crianças Perdidas</option>
+                </select>
+            </div>
+        </div>
+        <div class="personagens">
+            <div class="titulo">
+                <h2>Qual seu <gold style="color: darkgoldenrod;">Personagem</gold> favorito de <span>Berserk</span>?</h2>
+            </div>
+            <div id="imgPersonagem">
+                <img class="imagem" style="display: none;" />
+            </div>
+            <div class="select">
+                <select id="personagens">
+                    <option value="#">SELECIONE</option>
+                    <option value="guts">Guts</option>
+                    <option value="griffith">Griffith</option>
+                    <option value="casca">Casca</option>
+                    <option value="puck">Puck</option>
+                    <option value="isidro">Isidro</option>
+                    <option value="skull_knight">Skull Knight</option>
+                    <option value="zodd">Nosferatu Zodd</option>
+                    <option value="schierke">Schierke</option>
+                </select>
+            </div>
+        </div>
+    <script>
+
+        const arcoSelect = document.getElementById('arcos');
+        const personagemSelect = document.getElementById('personagens');
+        const arcoImg = document.querySelector('#imgArcos img');
+        const personagemImg = document.querySelector('#imgPersonagem img');
+    
+        const imagensArcos = {
+            espadachim_negro: './imagens/questionario/arcos/espadachim_negro.jpg',
+            golden_age: './imagens/questionario/arcos/golden_age.jpg',
+            conviccao: './imagens/questionario/arcos/conviccao.webp',
+            falcao: './imagens/questionario/arcos/falcao.webp',
+            fantasia: './imagens/questionario/arcos/fantasia.jpg',
+            barco: './imagens/questionario/arcos/barco.webp',
+            criancas: './imagens/questionario/arcos/criancas.webp'
+        };
+
+        const imagensPersonagens = {
+            guts: './imagens/questionario/personagens/guts.png',
+            griffith: './imagens/questionario/personagens/griffith.png',
+            casca: './imagens/questionario/personagens/casca.webp',
+            puck: './imagens/questionario/personagens/puck.webp',
+            isidro: './imagens/questionario/personagens/isidro.webp',
+            skull_knight: './imagens/questionario/personagens/skull_knight.jpg',
+            zodd: './imagens/questionario/personagens/zodd.jpg',
+            schierke: './imagens/questionario/personagens/schierke.webp'
+        };
+
+    
+
+        arcoSelect.addEventListener('change', () => {
+            const arcoSelecionado = arcoSelect.value;
+            if (arcoSelecionado && imagensArcos[arcoSelecionado]) {
+                arcoImg.src = imagensArcos[arcoSelecionado];
+                arcoImg.style.display = 'block';
+            } else {
+                arcoImg.style.display = 'none';
+            }
+        });
+
+        personagemSelect.addEventListener('change', () => {
+            const personagemSelecionado = personagemSelect.value;
+            if (personagemSelecionado && imagensPersonagens[personagemSelecionado]) {
+                personagemImg.src = imagensPersonagens[personagemSelecionado];
+                personagemImg.style.display = 'block';
+            } else {
+                personagemImg.style.display = 'none';
+            }
+        });
+    </script>
+</div>
+    <div class="botao">
+        <button onclick="cadastrarQuestionario()">CADASTRAR</button>
+    </div>
+</body>
+</html>
+<script>
+        var id_questionario = 1;
+        const arcoSelecionado = arcoSelect.value;
+        const personagemSelecionado = personagemSelect.value;
+
+        fetch(`/questionario/cadastrarQuestionario/`,{
+        method: 'POST',
+        headers: {"Content-Type": "application/json"}, 
+        body: JSON.stringify ({
+            id_questionarioServer: id_questionario, 
+            id_usuarioServer: sessionStorage.ID_USUARIO,
+            arcoServer: arcoSelecionado,
+            personagemServer: personagemSelecionado
+        })})
+        .then(
+        (response)=>{
+            if (!response.ok){throw new Error('Ocorreu um erro ao cadastrar as respostas' + response.status)}
+            if (response.status === 204){return{}}
+            return response.json()
+        }).catch((erro)=>{console.log(erro)})
+</script>
