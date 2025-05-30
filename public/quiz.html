@@ -40,6 +40,8 @@
 </html>
 <script src="./js/sessionStorage.js"></script>
 <script>
+    let idUsuario = sessionStorage.ID_USUARIO
+
     const listaDeQuestoes = [
 
         {
@@ -339,22 +341,22 @@
     function finalizarJogo() {
         let textoParaMensagemFinal = null
         let classComCoresParaMensagemFinal = null
-        const porcentagemFinalDeAcertos = pontuacaoFinal / quantidadeDeQuestoes
+        const porcentagemFinalDeAcertos = pontuacaoFinal / quantidadeDeQuestoes * 100
 
-        if (porcentagemFinalDeAcertos <= 0.3) {
+        if (porcentagemFinalDeAcertos <= 30) {
             textoParaMensagemFinal = "Parece que você não estudou..."
             classComCoresParaMensagemFinal = "text-danger-with-bg"
         }
-        else if (porcentagemFinalDeAcertos > 0.3 && porcentagemFinalDeAcertos < 0.9) {
+        else if (porcentagemFinalDeAcertos > 30 && porcentagemFinalDeAcertos < 80) {
             textoParaMensagemFinal = "Pode melhorar na próxima, hein!"
             classComCoresParaMensagemFinal = "text-warning-with-bg"
         }
-        else if (porcentagemFinalDeAcertos >= 0.9) {
+        else if (porcentagemFinalDeAcertos >= 80) {
             textoParaMensagemFinal = "Uau, parabéns!"
             classComCoresParaMensagemFinal = "text-success-with-bg"
         }
 
-        textoParaMensagemFinal += "<br> Você acertou " + Math.round((porcentagemFinalDeAcertos) * 100) + "% das questões."
+        textoParaMensagemFinal += "<br> Você acertou " + Math.round((porcentagemFinalDeAcertos)) + "% das questões."
 
 
         document.getElementById('msgFinal').innerHTML = textoParaMensagemFinal
@@ -367,6 +369,23 @@
         btnSubmeter.disabled = true
         // btnConcluir.disabled = true
         btnTentarNovamente.disabled = false
+
+        var id_quiz = 1;
+
+        fetch(`/quiz/cadastrarRespostas/`,{
+        method: 'POST',
+        headers: {"Content-Type": "application/json"}, 
+        body: JSON.stringify ({
+            id_usuarioServer: sessionStorage.ID_USUARIO, 
+            id_quizServer: id_quiz, 
+            resultadoServer: porcentagemFinalDeAcertos
+        })})
+        .then(
+        (response)=>{
+            if (!response.ok){throw new Error('Ocorreu um erro ao cadastrar as respostas' + response.status)}
+            if (response.status === 204){return{}}
+            return response.json()
+        }).catch((erro)=>{console.log(erro)})
 
     }
 </script>
