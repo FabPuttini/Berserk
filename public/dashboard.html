@@ -86,11 +86,9 @@
                 'Arco Fantasia',
                 'Arco do Barco',
                 'Arco Crianças Perdidas'
-            ]
+            ];
 
-            const valores = [
-                resposta
-            ]
+            const valores = [];
 
             const ctx = document.getElementById('graficoArcos').getContext('2d');
             var myChart = new Chart(ctx, {
@@ -110,6 +108,9 @@
                     }]
                 }
             });
+            for (let i = 0; i < resposta.length; i++){
+                valores.push(resposta[i].arco_favorito)
+            }
     }
     function buscarPersonagemFav() {
         fetch(`/dashboard/buscarPersonagemFav`, { cache: 'no-store' }).then(function (response) {
@@ -143,7 +144,6 @@
             ]
 
             const valores = [
-                resposta
             ]
 
             const ctx = document.getElementById('graficoPersonagens').getContext('2d');
@@ -165,8 +165,7 @@
                 }
             });
             for (let i = 0; i < resposta.length; i++){
-                let respostaAtual = resposta[i];
-                valores.push(respostaAtual.personagem_favorito)
+                valores.push(resposta[i].personagem_favorito)
             }
         }
     function buscarResultado() {
@@ -203,7 +202,6 @@
             ]
 
             const valores = [
-
             ]
 
             const ctx = document.getElementById('graficoResultado').getContext('2d');
@@ -224,5 +222,8 @@
                     }]
                 }
             });
+            for (let i = 0; i < resposta.length; i++){
+                valores.push(resposta[i].resultado)
+            }
         }
 </script>
