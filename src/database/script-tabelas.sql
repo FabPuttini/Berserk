@@ -11,7 +11,7 @@ CREATE TABLE usuario (
 );
 
 CREATE TABLE questionario (
-	id_quesitonario INT,
+	id_questionario INT,
     id_usuario INT,
     arco_favorito VARCHAR(30),
     personagem_favorito VARCHAR(20),

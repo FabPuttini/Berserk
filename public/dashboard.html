@@ -10,140 +10,219 @@
   <!-- Incluindo a biblioteca Chart.js para desenhar gráficos -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-
-
-
-
-  <body onload="obterDados()">
-    
-  <header id="header">
-    <div class="container">
-      <div class="navbar">
-        <nav>
-          <ul>
-            <li><a href="index.html">O Mangá</a></li>
-            <li><a href="projeto.html">O Projeto</a></li>
-            <li>
-              <button onclick="exibirSessao()"><img src="./imagens/icon.png"></button>
-              <div id="sessao">
-
-              </div>
-            </li>
-          </ul>
-        </nav>
-      </div>
-    </div>
-  </header>
-   <!-- Chamando a função obterDados ao carregar a página -->
+<body onload="obterDados()">
+    <header id="header">
+        <div class="container">
+            <div class="navbar">
+                <nav>
+                    <ul>
+                        <li><a href="index.html">O Mangá</a></li>
+                        <li><a href="projeto.html">O Projeto</a></li>
+                        <li>
+                            <button onclick="exibirSessao()"><img src="./imagens/icon.png"></button>
+                                <div id="sessao"></div>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
     <div class="titulo">
-      <span>Gráfico de Barras</span>
+        <span>Gráfico de Barras</span>
     </div>
     <div class="content">
-      <!-- Título para o gráfico de barras -->
-      <div class="graficos">
-        <canvas id="barra"></canvas>
-      </div>
-      <!-- Elemento canvas onde o gráfico de barra será desenhado -->
-
-      <div class="quiz">
-        <span>Quiz</span>
-      </div>
+        <div class="graficos">
+            <div class="graficoArcos">
+                <canvas id="graficoArcos"></canvas>
+            </div>
+            <div class="graficoPersonagens">
+                <canvas id="graficoPersonagens"></canvas>
+            </div>
+            <div class="graficoResultado">
+                <canvas id="graficoResultado"></canvas>
+            </div>
+        </div>
     </div>
-
-  </body>
-
+</body>
 </html>
 
 <script src="./js/sessionStorage.js"></script>
 <script>
 
-  // Função chamada ao carregar a página para obter e processar os dados
-  function obterDados() {
-    // Aqui seria a função que obteria os dados do banco de dados
-    // No caso, aqui você colocaria o fetch que teria o endereço da sua rota que você criou na pasta /routes e chamaria a função plotarGraficoLinha nessa função. Exemplo:
+  window.onload = function obterDados() {
 
-    // fetch('/obterDados')
-    // .then(function(response){
-    //   return response.json();
-    // })
-    // .then(function(data){
-    //   plotarGraficoLinha(data);
-    //   plotarGraficoBarra(data);
-    // })
-    // .catch(function(err){
-    //   console.log(err);
-    // })
+        buscarArcoFav();
+        buscarPersonagemFav();
+        buscarResultado();
+    };
 
-    // Como eu não configurei as rotas, eu criei um array com os dados para simular a obtenção dos dados
-    var dados = [{
-      jogador: 'Endrick',
-      votos: 10
-    },
-    {
-      jogador: 'João',
-      votos: 5
-    },
-    {
-      jogador: 'Maria',
-      votos: 15
-    },
-    {
-      jogador: 'José',
-      votos: 20
-    },
-    {
-      jogador: 'Pedro',
-      votos: 25
-    },
-    {
-      jogador: 'Ana',
-      votos: 30
-    }]
-    // Chamando a função para plotar o gráfico de barra com os dados
-    plotarGraficoBarra(dados)
-  }
+    
 
-  // Separando os rótulos (labels) e os dados dos votos
-  var votos = [];
-  var jogadores = [];
-
-  // Preenchendo os arrays com os dados
-  for (var i = 0; i < dados.length; i++) {
-    votos.push(dados[i].votos);
-    jogadores.push(dados[i].jogador);
-  }
-
-  // Função para plotar o gráfico de barra
-  function plotarGraficoBarra(dados) {
-
-    var votos = [];
-    var jogadores = [];
-
-    // Preenchendo os arrays com os dados
-    for (var i = 0; i < dados.length; i++) {
-      votos.push(dados[i].votos);
-      jogadores.push(dados[i].jogador);
+    function buscarArcoFav() {
+        fetch(`/dashboard/buscarArcoFav`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    // console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    resposta.reverse();
+                    graficoArcos(resposta);
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+        .catch(function (error) {
+            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+        });
     }
 
-    // Capturando o elemento canvas pelo id 
-    var ctx = document.getElementById('barra').getContext('2d');
-    // Criando o gráfico de barra usando o Chart.js
-    var myChart = new Chart(ctx, {
-      type: 'bar', // Tipo de gráfico: barra
-      data: { // Dados para o gráfico
-        labels: jogadores, // Rótulos no eixo X
-        datasets: [{
-          label: 'Acertos', // Nome do conjunto de dados
-          data: votos, // Dados dos votos
-          backgroundColor: [
-            'rgba(210, 18, 22, 0.2)', // Cor de fundo das barras
-          ],
-          borderColor: [
-            'rgba(210, 18, 22, 1)', // Cor da borda das barras
-          ],
-          borderWidth: 1 // Largura da borda das barras
-        }]
-      },
-    });
-  }
+    function graficoArcos(resposta){
+        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+
+            const labels = [
+                'Espadachim Negro',
+                'Era de Ouro',
+                'Arco da Convicção',
+                'Falcão Milenar',
+                'Arco Fantasia',
+                'Arco do Barco',
+                'Arco Crianças Perdidas'
+            ]
+
+            const valores = [
+                resposta
+            ]
+
+            const ctx = document.getElementById('graficoArcos').getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Arco Favorito',
+                        data: valores,
+                        backgroundColor: [
+                            'rgba(210, 18, 22, 0.2)',
+                        ],
+                        borderColor: [
+                            'rgba(210, 18, 22, 1)', // Cor da borda das barras
+                        ],
+                        borderWidth: 1
+                    }]
+                }
+            });
+    }
+    function buscarPersonagemFav() {
+        fetch(`/dashboard/buscarPersonagemFav`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    resposta.reverse();
+                    graficoPersonagens(resposta);
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+        .catch(function (error) {
+            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+        });
+    }
+
+    function graficoPersonagens(resposta){
+
+
+            const labels = [
+                'Guts',
+                'Griffith',
+                'Casca',
+                'Puck',
+                'Isidro',
+                'Skull Knight',
+                'Nosferatu Zodd',
+                'Schierke'
+            ]
+
+            const valores = [
+                resposta
+            ]
+
+            const ctx = document.getElementById('graficoPersonagens').getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Personagens Favoritos',
+                        data: valores,
+                        backgroundColor: [
+                            'rgba(210, 18, 22, 0.2)',
+                        ],
+                        borderColor: [
+                            'rgba(210, 18, 22, 1)', // Cor da borda das barras
+                        ],
+                        borderWidth: 1
+                    }]
+                }
+            });
+            for (let i = 0; i < resposta.length; i++){
+                let respostaAtual = resposta[i];
+                valores.push(respostaAtual.personagem_favorito)
+            }
+        }
+    function buscarResultado() {
+        fetch(`/dashboard/buscarResultado`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    resposta.reverse();
+                    graficoResultado(resposta);
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+        .catch(function (error) {
+            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+        });
+    }
+
+    function graficoResultado(resposta){
+
+            const labels = [
+                '0%',
+                '10%',
+                '20%',
+                '30%',
+                '40%',
+                '50%',
+                '60%',
+                '70%',
+                '80%',
+                '90%',
+                '100%'
+            ]
+
+            const valores = [
+
+            ]
+
+            const ctx = document.getElementById('graficoResultado').getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Resultados do Quiz',
+                        data: valores,
+                        backgroundColor: [
+                            'rgba(210, 18, 22, 0.2)',
+                        ],
+                        borderColor: [
+                            'rgba(210, 18, 22, 1)', // Cor da borda das barras
+                        ],
+                        borderWidth: 1
+                    }]
+                }
+            });
+        }
 </script>

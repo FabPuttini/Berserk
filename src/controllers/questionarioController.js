@@ -1,12 +1,11 @@
 var questionarioModel = require("../models/questionarioModel");
 
 function cadastrarQuestionario(req, res) {
-    var id_questionario = req.body.id_questionarioServer;
     var id_usuario = req.body.id_usuarioServer;
-    var arco_favorito = req.body.arcoServer;
-    var personagem_favorito = req.body.personagemServer;
+    var arcoSelecionado = req.body.arcoServer;
+    var personagemSelecionado = req.body.personagemServer;
 
-    questionarioModel.cadastrarQuestionario(id_questionario, id_usuario, arco_favorito, personagem_favorito).then(function(resultado){
+    questionarioModel.cadastrarQuestionario(id_usuario, arcoSelecionado, personagemSelecionado).then(function(resultado){
         if(resultado.length > 0){
             res.status(200).json(resultado)
         }

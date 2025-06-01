@@ -380,13 +380,10 @@
         // btnConcluir.disabled = true
         btnTentarNovamente.disabled = false
 
-        var id_quiz = 1;
-
         fetch(`/quiz/cadastrarRespostas/`,{
         method: 'POST',
         headers: {"Content-Type": "application/json"}, 
-        body: JSON.stringify ({
-            id_quizServer: id_quiz, 
+        body: JSON.stringify ({ 
             id_usuarioServer: sessionStorage.ID_USUARIO,
             resultadoServer: porcentagemFinalDeAcertos
         })})

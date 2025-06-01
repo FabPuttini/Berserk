@@ -123,23 +123,15 @@
                 personagemImg.style.display = 'none';
             }
         });
-    </script>
-</div>
-    <div class="botao">
-        <button onclick="cadastrarQuestionario()">CADASTRAR</button>
-    </div>
-</body>
-</html>
-<script>
-        var id_questionario = 1;
+
+        function cadastrarQuestionario(){
         const arcoSelecionado = arcoSelect.value;
         const personagemSelecionado = personagemSelect.value;
 
-        fetch(`/questionario/cadastrarQuestionario/`,{
+        fetch(`/questionario/cadastrarQuestionario`,{
         method: 'POST',
         headers: {"Content-Type": "application/json"}, 
         body: JSON.stringify ({
-            id_questionarioServer: id_questionario, 
             id_usuarioServer: sessionStorage.ID_USUARIO,
             arcoServer: arcoSelecionado,
             personagemServer: personagemSelecionado
@@ -150,4 +142,17 @@
             if (response.status === 204){return{}}
             return response.json()
         }).catch((erro)=>{console.log(erro)})
+
+        sessionStorage.ARCO_FAVORITO = arcoServer;
+        sessionStorage.PERSONAGEM_FAVORITO = personagemServer;
+     }
+    </script>
+</div>
+    <div class="botao">
+        <button onclick="cadastrarQuestionario()">CADASTRAR</button>
+    </div>
+</body>
+</html>
+<script>
+     
 </script>

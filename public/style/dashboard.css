@@ -117,21 +117,17 @@ header ul li a{
     font-size: 68px;    
 }
 
-.graficos canvas{
+.graficos {
     display: flex;
-    height: 40%;
-    width: 50%;
-    margin-top: 30px;
+    flex-direction: row;
     margin-left: auto;
     margin-right: auto;
 }
 
-.quiz {
+.graficos canvas{
     display: flex;
-    margin-top: 100px;
-    margin-left: auto;
-    margin-right: auto;
-    width: 400px;
-    height: 500px;
-    background-color: black;
+    width: 500px;
+    margin-top: 200px;
+    margin-left: 50px;
+    margin-right: 50px;
 }
