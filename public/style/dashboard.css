@@ -117,6 +117,13 @@ header ul li a{
     font-size: 68px;    
 }
 
+.titulo span2 {
+    display: flex;
+    margin-left: 150px;
+    color: rgb(228, 228, 228);
+    font-size: 34px;    
+}
+
 .graficos {
     display: flex;
     flex-direction: row;
